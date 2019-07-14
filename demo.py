@@ -11,6 +11,7 @@ import numpy as np
 
 import constants
 from recognizer import HandWrittenRecognizer
+from utils import is_number
 
 
 def load_model():
@@ -34,12 +35,9 @@ def verify_argument(args):
     if not args.path:
         return False
 
-    # If max option is provided, check if it is a number
-    if args.max:
-        try:
-            int(args.max)
-        except ValueError:
-            return False
+    # If max option is provided, check if it is a integer
+    if args.max and not is_number(args.max):
+        return False
 
     return True
 
@@ -56,7 +54,7 @@ def main():
 
     # Input check
     if not verify_argument(args):
-        print(constants.HELP_MSG)
+        print(constants.DEMO_HELP_MSG)
         return
 
     test_file_path = args.path

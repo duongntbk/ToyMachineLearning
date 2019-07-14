@@ -7,6 +7,9 @@ MODEL_FILE_PATH = 'model/recognizer.pickle'
 LABEL_ENCODER_FILE_PATH = 'model/label_encoder.pickle'
 
 # Manual
-HELP_MSG = '\n' + \
+DEMO_HELP_MSG = '\n' + \
             'Input parameter is incorrect\n' + \
             'Display help: \'python demo.py -h\''
+TRAINER_HELP_MSG = '\n' + \
+                'Input parameter is incorrect\n' + \
+                'Display help: \'python extractor.py -h\''

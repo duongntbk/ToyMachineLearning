@@ -61,7 +61,7 @@ def main():
 
         # Extract train, validation, test set from archive file
         train_set, validation_set, test_set = extractor.extract(constants.MNIST_DATASET_PATH)
-        
+
         # Write each data set to csv file
         extractor.export_to_csv('train', train_set, is_test=False)
         print('Train set exported')
@@ -69,6 +69,11 @@ def main():
         print('Validation set exported')
         extractor.export_to_csv('test', test_set, is_test=True)
         print('Test set exported')
+
+    except MemoryError:
+        # The test dataset is quite big, more than 4GB of RAM and python 64 bit is required
+        print('An memory error has occurred, please check if you have enough memory \
+                and you are using python 64bit')
 
     except Exception as e:
         print('An error has occurred')
