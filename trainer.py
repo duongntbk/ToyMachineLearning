@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-Train model to recognize hand written number using MNIST data set.
+Train model to recognize hand written digits using MNIST data set.
 '''
 
 import argparse
