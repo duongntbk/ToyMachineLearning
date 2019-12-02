@@ -22,10 +22,17 @@ def main():
 
     parser=argparse.ArgumentParser()
     parser.add_argument('--max', help='The maximum number of data points to be used while training model. \
-        if empty, the whole training set will be used')
+        if empty, the whole training set will be used.')
+    parser.add_argument('--C', type=float, default=1.0, help='C parameter for SVC algorithm. \
+        if empty, C will be set to 1.0.')
+    parser.add_argument('--gamma', type=float, default=.01, help='Gamma parameter for SVC algorithm. \
+        if empty, gamma will be set to 0.01.')
+    parser.add_argument('--kernel', type=str, default='linear', help='Kernel for SVC algorithm. \
+        if empty, linear kernel will be used. Only linear and rbf kernel are supported at the moment.')
     args=parser.parse_args()
 
-    if args.max and not is_number(args.max):
+    if (args.max and not is_number(args.max)) or \
+            (args.kernel != 'kernel' and args.kernel != 'rbf'):
         print(constants.TRAINER_HELP_MSG)
         return
 
@@ -46,7 +53,7 @@ def main():
         labels = label_encoder.fit_transform(label_set)
 
         # Use SVC to train a recognition model
-        recognizer = SVC(C=1.0, kernel='linear', probability=True)
+        recognizer = SVC(C=args.C, gamma=args.gamma, kernel=args.kernel, probability=True)
         recognizer.fit(feature_set, labels)
 
         # Write trained model and label encoder to file

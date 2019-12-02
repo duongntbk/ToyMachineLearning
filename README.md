@@ -29,6 +29,10 @@ To limit the number of records used while training the model, add the --max argu
 
     python trainer.py --max=5000
 
+You can also set C, gamma or kernel to be used in SVC. With max=10000, C=100.0, gamma=0.01, kernel='rbf', an accuracy of 96.58% on test datasets can be reached:
+
+    python trainer.py --max=10000 --C=100.0 --gamma=0.01 --kernel=rbf
+
 The trained model will be stored as pickle files in *model* folder.
 
 ### Verify the model
@@ -40,7 +44,9 @@ The MNIST DATABASE contains a test data set, we have extracted it to *test* fold
 If you want to verify just a few top records in test data set, add the --max argument. To verify the first 10 records in test data set:
 
     python demo.py --path=test/test_data.csv --max=10
+
 # License
 
 MIT License
+
 https://opensource.org/licenses/MIT
